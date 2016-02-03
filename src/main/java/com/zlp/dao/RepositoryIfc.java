@@ -3,6 +3,7 @@ package com.zlp.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.zlp.dao.enums.OrderEnum;
 import com.zlp.exception.AddErrorException;
 import com.zlp.exception.DeleteErrorException;
 import com.zlp.exception.UpdateErrorException;
@@ -210,7 +211,7 @@ public interface RepositoryIfc {
 	 * @param sort 排序，map类型
 	 * @return 只返回一条数据 JSONObject
 	 */
-	Object findOne(Class<?> clazz, Map<String, Object> filter, Map<String, Integer> sort);
+	Object findOne(Class<?> clazz, Map<String, Object> filter, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：根据条件查询排序到第一条数据
 	 * @param clazz 表实体
@@ -218,7 +219,7 @@ public interface RepositoryIfc {
 	 * @param sort 排序，map类型
 	 * @return 只返回一条数据 JSONObject
 	 */
-	Object findOne(String table, Map<String, Object> filter, Map<String, Integer> sort);
+	Object findOne(String table, Map<String, Object> filter, Map<String, OrderEnum> sort);
 
 	
 	
@@ -234,7 +235,7 @@ public interface RepositoryIfc {
 	 * @param sort 排序，null表示没有排序
 	 * @return 总条数跟当前页的数据 JSONObject
 	 */
-	Map<String, Object> query(Class<?> clazz, Map<String, Object> filter, int page, int pageSize, Map<String, Integer> sort);
+	Map<String, Object> query(Class<?> clazz, Map<String, Object> filter, int page, int pageSize, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：一个条件分页查询数据列表接口
 	 * @param table
@@ -244,7 +245,7 @@ public interface RepositoryIfc {
 	 * @param order 排序，null表示没有排序
 	 * @return 总条数跟当前页的数据 JSONObject
 	 */
-	Map<String, Object> query(String table, Map<String, Object> filter, int page, int pageSize, Map<String, Integer> sort);
+	Map<String, Object> query(String table, Map<String, Object> filter, int page, int pageSize, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：根据条件查询符合条件的全部数据
 	 * @param clazz
@@ -252,7 +253,7 @@ public interface RepositoryIfc {
 	 * @param sort
 	 * @return 返回符合条件的全部数据/当查询条件filter为null的时候，返回null
 	 */
-	List<?> query(Class<?> clazz, Map<String, Object> filter, Map<String, Integer> sort);
+	List<?> query(Class<?> clazz, Map<String, Object> filter, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：根据条件查询一条或者多条数据
 	 * @param table
@@ -260,21 +261,21 @@ public interface RepositoryIfc {
 	 * @param sort
 	 * @return 返回一条或者多条数据/当查询条件filter为null的时候，返回null
 	 */
-	List<?> query(String table, Map<String, Object> filter, Map<String, Integer> sort);
+	List<?> query(String table, Map<String, Object> filter, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：查询所有数据
 	 * @param clazz
 	 * @param sort
 	 * @return 所有数据
 	 */
-	List<?> queryAll(Class<?> clazz, Map<String, Integer> sort);
+	List<?> queryAll(Class<?> clazz, Map<String, OrderEnum> sort);
 	/**
 	 * 描述：查询所有数据
 	 * @param table
 	 * @param sort
 	 * @return 所有数据
 	 */
-	List<?> queryAll(String table, Map<String, Integer> sort);
+	List<?> queryAll(String table, Map<String, OrderEnum> sort);
 	
 	
 	
@@ -282,7 +283,7 @@ public interface RepositoryIfc {
 	 * 描述：查找不重复的纪录
 	 * @param clazz
 	 * @param field 指定不重复的字段
-	 * @param query
+	 * @param filter
 	 * @return List<?>
 	 */
 	List<?> distinct(Class<?> clazz, String field, Map<String, Object> filter);
@@ -290,7 +291,7 @@ public interface RepositoryIfc {
 	 * 描述：查找不重复的纪录
 	 * @param clazz
 	 * @param field 指定不重复的字段
-	 * @param query
+	 * @param filter
 	 * @return List<?>
 	 */
 	List<?> distinct(String table, String field, Map<String, Object> filter);
